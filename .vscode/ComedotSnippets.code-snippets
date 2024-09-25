@@ -1,0 +1,180 @@
+{
+	"Function": {
+		"prefix": "func",
+		"body": [
+			"func ${1:name}() -> void:",
+			"\t${2:pass}$0",
+			"\n"
+		],
+		"description": "A basic function skeleton."
+	},
+
+	"Function with Return": {
+		"prefix": "func",
+		"body": [
+			"func ${1:name}() -> ${2:Variant}:",
+			"\t$0",
+			"\treturn null",
+			"\n"
+		],
+		"description": "A basic function skeleton that returns a value."
+	},
+
+	"Complex Function": {
+		"prefix": "func",
+		"body": [
+			"## ${5:Documentation}",
+			"func ${1:name}(${2:parameter: Type}) -> ${3:Variant}:",
+			"\tif not ${4:isEnabled}: return null",
+			"\t$0",
+			"\treturn false",
+			"\n"
+		],
+		"description": "A function skeleton with documentation, arguments, guard clause, and a return value."
+	},
+
+	"Ready Method": {
+		"prefix": "ready",
+		"body": [
+			"func _ready() -> void:",
+			"\t${1:pass}$0"
+		],
+		"description": "A Node's _ready() method."
+	},
+
+	"Void": {
+		"prefix": "void",
+		"body": [
+			"-> void:",
+			"\t$0"
+		],
+		"description": "Embrace the void."
+	},
+
+	"Export": {
+		"prefix": "@export",
+		"body": [ "@export var ${1:isFlagged}: ${2:bool} = ${3:false}" ],
+		"description": "A basic export parameter."
+	},
+
+	"Export Range": {
+		"prefix": "@export",
+		"body": [ "@export_range(${4:0.0}, ${5:100.0}, ${6:10.0}) var ${1:speed}: ${2:float} = ${3:42.0}" ],
+		"description": "An export parameter with a range."
+	},
+
+	"@onready Node Reference": {
+		"prefix": "@onready",
+		"body": [ "@onready var $0${1:propertyName}: ${2:NodeType} = ${3:$}${1:NodeName}" ],
+		"description": "A property that references a Node with a $Name or %Unique name."
+	},
+
+	"Variable": {
+		"prefix": "var",
+		"body": ["var ${1:name}: ${2:type} = ${3:default}\n$0"],
+		"description": "A variable definition with an explicit type."
+	},
+
+	"External Property": {
+		"prefix": "varReturn",
+		"body": [
+			"var ${2:objectName}: ${3:objectType}:",
+			"\tget: return ${1:objectParent}.$0${2:objectName}",
+			"\n"
+		],
+		"description": "A property that returns another object's property."
+	},
+
+	"Component Dependency": {
+		"prefix": "varComponent",
+		"body": [
+			"var ${2:coComponent}: ${1:ComponentType}:",
+			"\tget:",
+			"\t\tif not ${2:coComponent}: ${2:coComponent} = self.getCoComponent(${1:ComponentType})",
+			"\t\treturn ${2:coComponent}",
+			"\n$0"
+		],
+		"description": "A property that searches for a sibling component and caches a reference to it."
+	},
+
+	"Component Reference": {
+		"prefix": "coComponent",
+		"body": [
+			"var ${2:coComponent}: ${1:ComponentType} = self.getCoComponent(${1:ComponentType})",
+			"${2:coComponent}.$0"
+		],
+		"description": "A variabble that stores a reference to a sibling component."
+	},
+
+	"Property Getter": {
+		"prefix": "get",
+		"body": [ "get: return $0" ],
+		"description": "A property getter stub."
+	},
+
+	"Property Setter": {
+		"prefix": "set",
+		"body": [
+			"set(newValue):",
+			"\t${1:property} = newValue$0"
+		],
+		"description": "A property setter stub."
+	},
+
+	"Property Setter If New": {
+		"prefix": "setNew",
+		"body": [
+			"set(newValue):",
+			"\tif newValue != ${1:property}:",
+			"\t\t${1:property} = newValue\n\t\t$0"
+		],
+		"description": "A property setter which only updates a variable if the new value is different."
+	},
+
+	"Signal Connection": {
+		"prefix": ".connect",
+		"body": [ 
+			".connect(self.${3:on${1}_${2}})\n\n",
+			"${4:func $3() -> void:}",
+			"\t${5:pass}"
+		],
+		"description": "A signal connector and a function to handle the signal."
+	},
+
+	"Stat": {
+		"prefix": "stat",
+		"body": [ "statsComponent.getStat(&\"${1:health}\").$0" ],
+		"description": "Quick access to a StatsComponent."
+	},
+
+	"Debug Info": {
+		"prefix": "showDebugInfo",
+		"body": [
+			"func showDebugInfo() -> void:",
+			"\tif not shouldShowDebugInfo: return",
+			"\tDebug.watchList[str(\"\\n —\", parentEntity.name, \".\", self.name)] = \"\"",
+			"\tDebug.watchList.$0"
+		],
+		"description": "A template for a showDebugInfo() method."
+	},
+	
+	"Region": {
+		"prefix": "region",
+		"body": [
+			"#region ${1:Title}",
+			"$0",
+			"#endregion\n\n"
+		],
+		"description": "A code region."
+	},
+
+	"GDScript File Template": {
+  	  "isFileTemplate": true,
+		"scope": "gdscript",
+		"prefix": "gdTemplate",
+		"body": [
+        	"## Description"
+    	],
+    	"description": "A template for new GDScript files."
+	},
+}

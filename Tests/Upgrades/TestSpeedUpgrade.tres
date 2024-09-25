@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=7 format=3 uid="uid://qnkhwtlbroqg"]
+
+[ext_resource type="Resource" uid="uid://drkt6rhhny6b4" path="res://Tests/Stats/TestMana.tres" id="1_f00qb"]
+[ext_resource type="Script" path="res://Resources/Upgrade.gd" id="1_m1sav"]
+[ext_resource type="Script" path="res://Tests/Upgrades/TestSpeedUpgradePayload.gd" id="2_723c3"]
+[ext_resource type="Script" path="res://Resources/Payloads/ScriptPayload.gd" id="3_d6b6q"]
+
+[sub_resource type="Resource" id="Resource_dxtrk"]
+script = ExtResource("3_d6b6q")
+payloadScript = ExtResource("2_723c3")
+payloadScriptMethodName = &"onUpgrade_didAcquireOrLevelUp"
+shouldShowDebugInfo = true
+
+[sub_resource type="Resource" id="Resource_umyfg"]
+script = ExtResource("3_d6b6q")
+payloadScript = ExtResource("2_723c3")
+payloadScriptMethodName = &"onUpgrade_willDiscard"
+shouldShowDebugInfo = true
+
+[resource]
+script = ExtResource("1_m1sav")
+name = &"speed"
+displayName = "SPEED"
+payloadOnAcquire = SubResource("Resource_dxtrk")
+payloadOnDiscard = SubResource("Resource_umyfg")
+description = ""
+shouldShowDebugInfo = true
+level = 0
+maxLevel = 10
+shouldAllowInfiniteLevels = false
+costStat = ExtResource("1_f00qb")
+costs = Array[int]([10, 20, 30])
+shouldUseLastCostForHigherLevels = true
+requiredUpgrades = Array[ExtResource("1_m1sav")]([])
+mutuallyExclusiveUpgrades = Array[StringName]([])
